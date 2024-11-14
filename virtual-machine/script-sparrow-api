@@ -42,8 +42,10 @@ sudo usermod -aG docker sparrow
 sudo apt install git -y
 
 # Clone the repository
-sudo git clone https://github.com/sparrowapp-dev/sparrow-api.git
+# sudo git clone https://github.com/sparrowapp-dev/sparrow-api.git
+sudo git clone -b build/update-docker-compose https://github.com/sparrowapp-dev/sparrow-api.git
  
+
 sudo touch /sparrow-api/.env
 
 sudo cp /sparrow-api/.env.example /sparrow-api/.env
