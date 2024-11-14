@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# update & upgrade
+apt update -y
+apt upgrade -y
+
+
+# Set up Docker's apt repository
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update -y
+
+# Install the Docker packages
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+# add user to docker group
+sudo usermod -aG docker sparrow
+
+
+# install node 20
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install nodejs -y
+sudo apt-get update -y
+
+# install yarn
+sudo apt install yarn -y
+sudo apt-get update -y
+
+OR 
+npm install --global yarn
+
+# install git
+sudo apt install git -y
+
+
+# Install tauri / rust
+sudo apt update -y
+sudo apt install libwebkit2gtk-4.0-dev \
+    build-essential \
+    curl \
+    wget \
+    file \
+    libssl-dev \
+    libgtk-3-dev \
+    libayatana-appindicator3-dev \
+    librsvg2-dev -y
+
+
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+# it asks for manual intervention. Have to press enter to go with default installation
+
+
+
+# Clone the repo
+git clone https://github.com/sparrowapp-dev/sparrow-app
+
+# Move into the project root
+cd sparrow-app
+
+# Install dependencies and Husky hooks
+yarn
+
+
+# Copy web app .env.example to .env
+cp apps/@sparrow-web/.env.example apps/@sparrow-web/.env
+
+
+# Run the web app in dev mode
+yarn web-start
+
+# --------------------------------------

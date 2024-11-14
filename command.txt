@@ -1,0 +1,47 @@
+# syntax
+az deployment group create \
+  --name "deployment-name" \
+  --resource-group "resource_group-name" \
+  --template-file "path/template.json" \
+  --parameters "path/parameter.json"
+
+
+
+az deployment group create \
+  --resource-group sparrow-rg \
+  --template-file vm-mela.json \
+  --parameters adminPassword=<VM-Password>
+
+
+az deployment group create \
+  --resource-group sparrow-rg \
+  --template-file vm-mela.json \
+  --parameters adminPassword="$(read -s -p 'Enter VM password: ' password && echo $password)"
+
+
+
+# Azure cli (bash)
+az deployment group create \
+  --name SparrowVmDeployment \
+  --resource-group Sparrow-rg \
+  --template-file template.json \
+  --parameters parameters.json
+
+
+
+# Powershell
+New-AzResourceGroupDeployment `
+  -Name SparrowVmDeployment `
+  -ResourceGroupName sparrow-rg `
+  -TemplateFile template.json `
+  -TemplateParameterFile parameters.json
+
+
+
+az deployment group create \
+  --resource-group sparrow-arm \
+  --template-file virtual-machine/template.json \
+  --parameters vmName= <> \
+              vmSize=<> \
+              adminUsername=<> \
+              adminPassword=<>

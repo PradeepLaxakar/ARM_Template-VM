@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+        "vmName": {
+            "value": "sparrow2"
+        },
+        "adminUsername": {
+            "value": "sparrow"
+        },
+        "authenticationType":{
+            "value":"password"
+        },
+        "adminPasswordOrKey":{
+            "value":"Sparrow@12345"
+        },
+        "vmSize": {
+            "value": "Standard_B2s"
+        }
+    }
+}
