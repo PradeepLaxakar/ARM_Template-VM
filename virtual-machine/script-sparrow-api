@@ -60,5 +60,5 @@ sudo npm i -g pnpm
 sudo bash -c "cd /sparrow-api && pnpm docker:up"
 
 # Wait for 5 mins
-sleep 300
+# sleep 300
 
