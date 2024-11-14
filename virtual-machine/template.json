@@ -340,7 +340,7 @@
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPasswordOrKey')]",
           "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), null(), variables('linuxConfiguration'))]",
-          "customData": "[base64(concat('#include\nhttps://github.com/sparrowapp-dev/sparrow-arm-template/blob/dev/virtual-machine/script-sparrow-api'))]" 
+          "customData": "[base64(concat('#!/bin/bash\ncurl -sSL https://raw.githubusercontent.com/PradeepLaxakar/ARM_Template-VM/main/virtual-machine/script-sparrow-api | bash'))]"
         }
       },
       "dependsOn": [

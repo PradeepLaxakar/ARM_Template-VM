@@ -27,13 +27,13 @@ sudo apt install nodejs -y
 sudo apt-get update -y
 
 # Create sparrow user
-# sudo useradd -m sparrow
+sudo useradd -m sparrow
 
 # Set the password for the new user
-# echo "sparrow:sparrow" | sudo chpasswd
+echo "sparrow:sparrow" | sudo chpasswd
 
 # Optionally, add the user to a specific group (e.g., 'sudo' for admin access)
-# sudo usermod -aG sudo sparrow
+sudo usermod -aG sudo sparrow
 
 # add user to docker group
 sudo usermod -aG docker sparrow
@@ -56,3 +56,33 @@ sudo npm i -g pnpm
 
 # # Run docker up command inside /sparrow-api
 # sudo bash -c "cd /sparrow-api && pnpm docker:up"
+
+
+# # Install PNPM globally
+# sudo npm i -g pnpm
+
+# # Setup required components locally - Mongo, Kafka (Wait for 3-5 minutes after running this command)
+# sudo pnpm docker:up
+
+
+# # Install nodemon globally
+# sudo npm install -g nodemon
+
+# # Require sleep of 5 minutes for mongo and kafka
+# sleep 100
+
+# # Insatll dependencies
+# sudo pnpm i
+
+# # Copy .env file
+# sudo cp /sparrow-api/.env.example /sparrow-api/.env
+
+# # Run App in development mode
+# sudo pnpm start:dev
+
+# # # Access swagger on localhost
+# # Go to http://localhost/api/docs
+# # Check health <public-ip>:9000/health
+
+# # #[OPTIONAL] In case you want to remove the local components, run the below command 
+# # pnpm docker:down
