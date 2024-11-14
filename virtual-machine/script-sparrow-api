@@ -56,5 +56,8 @@ sudo chown -R sparrow:sparrow /sparrow-api/
 # Install PNPM globally
 sudo npm i -g pnpm
 
-# # Run docker up command inside /sparrow-api
-# sudo bash -c "cd /sparrow-api && pnpm docker:up"
+# Run docker up command inside /sparrow-api
+sudo bash -c "cd /sparrow-api && pnpm docker:up"
+
+# Wait for 2 mins
+sleep 100
