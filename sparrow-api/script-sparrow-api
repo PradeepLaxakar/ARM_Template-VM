@@ -32,7 +32,7 @@ sudo apt-get update -y
 # Set the password for the new user
 # echo "sparrow:sparrow" | sudo chpasswd
 
-# Optionally, add the user to a specific group (e.g., 'sudo' for admin access)
+# Add user to a specific group sudo group
 # sudo usermod -aG sudo sparrow
 
 # add user to docker group
