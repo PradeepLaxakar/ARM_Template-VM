@@ -1,14 +1,13 @@
 #!/bin/bash
 
 # update & upgrade
-echo update & upgrade -----------------------------------------------------------------------------------
+echo update & upgrade -------------------------------------------------------------------------------------------------------
 sudo apt update -y
 sudo apt upgrade -y
 
 
 # Set up Docker's apt repository
-echo Setting up docker -----------------------------------------------------------------------------------
-# Add Docker's official GPG key:
+echo Setting up docker ------------------------------------------------------------------------------------------------------
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -24,28 +23,27 @@ echo \
 sudo apt-get update
 
 # Install the Docker packages
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 
 # add user to docker group
 # sudo usermod -aG docker $USER
-echo Adding user to docker grup -----------------------------------------------------------------------------------
+echo Adding user to docker grup ----------------------------------------------------------------------------------------------
 sudo usermod -aG docker sparrow
 
 # install git
-echo Installing git -----------------------------------------------------------------------------------
+echo Installing git ----------------------------------------------------------------------------------------------------------
 sudo apt install git -y
 
 # Clone the repositor
-echo Cloning repo -----------------------------------------------------------------------------------
+echo Cloning repo ------------------------------------------------------------------------------------------------------------
 # sudo git clone https://github.com/sparrowapp-dev/sparrow-api.git
 sudo git clone -b feat/docker-setup https://github.com/sparrowapp-dev/sparrow-app.git
 
 # cd into cloned directory.
-echo cd into repo -----------------------------------------------------------------------------------
+echo cd into repo ------------------------------------------------------------------------------------------------------------
 cd /sparrow-app
 
 # Run docker-compose
-echo Running docker-compose up -d -----------------------------------------------------------------------------------
-docker-compose up -d
-
+echo Running docker-compose up -d --------------------------------------------------------------------------------------------
+sudo docker-compose up -d
