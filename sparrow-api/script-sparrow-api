@@ -1,11 +1,16 @@
 #!/bin/bash
 
 # update & upgrade
+echo update & upgrade -----------------------------------------------------------------------------------
 sudo apt update -y
 sudo apt upgrade -y
 
+
 # Set up Docker's apt repository
+echo Setting up docker -----------------------------------------------------------------------------------
 # Add Docker's official GPG key:
+# Add Docker's official GPG key:
+sudo apt-get update
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -14,58 +19,33 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 # Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update -y
+sudo apt-get update
 
 # Install the Docker packages
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# install node 20
-# curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-# sudo apt install nodejs -y
-# sudo apt-get update -y
-
-# Create sparrow user
-# sudo useradd -m sparrow
-
-# Set the password for the new user
-# echo "sparrow:sparrow" | sudo chpasswd
-
-# # Add user to a sudo group
-# sudo usermod -aG sudo $USER
 
 # add user to docker group
 # sudo usermod -aG docker $USER
+echo Adding user to docker grup -----------------------------------------------------------------------------------
 sudo usermod -aG docker sparrow
 
 # install git
+echo Installing git -----------------------------------------------------------------------------------
 sudo apt install git -y
 
-# Clone the repository
+# Clone the repositor
+echo Cloning repo -----------------------------------------------------------------------------------
 # sudo git clone https://github.com/sparrowapp-dev/sparrow-api.git
 sudo git clone -b feat/docker-setup https://github.com/sparrowapp-dev/sparrow-app.git
 
 # cd into cloned directory.
+echo cd into repo -----------------------------------------------------------------------------------
 cd /sparrow-app
 
 # Run docker-compose
+echo Running docker-compose up -d -----------------------------------------------------------------------------------
 docker-compose up -d
-
-
-################################## SPARROW API ##################################
-# sudo touch /sparrow-api/.env
-
-# sudo cp /sparrow-api/.env.example /sparrow-api/.env
-
-# sudo chown -R $USER:$USER /sparrow-api/
-
-# # Install PNPM globally
-# sudo npm i -g pnpm
-
-# # Run docker up command inside /sparrow-api
-# sudo bash -c "cd /sparrow-api && pnpm docker:up"
-
-# # Wait for 5 mins
-# # sleep 300
 
